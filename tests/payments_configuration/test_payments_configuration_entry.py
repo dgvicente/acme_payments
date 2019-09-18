@@ -1,5 +1,4 @@
 import unittest
-
 from payments_configuration.day_time import DayTime
 from payments_configuration.payments_configuration_entry import PaymentsConfigurationEntry
 from tests.helpers import random_time, random_number, random_string
@@ -41,10 +40,6 @@ class TestPaymentsConfigurationEntry(unittest.TestCase):
     def test_should_throw_an_exception_when_end_time_is_less_than_initial_time(self):
         with self.assertRaises(ValidationException):
             PaymentsConfigurationEntry('09:00', '08:00', 25)
-
-    def test_should_throw_an_exception_when_hours_are_equal_and_end_minutes_are_less_than_initial_minutes(self):
-        with self.assertRaises(ValidationException):
-            PaymentsConfigurationEntry('08:30', '08:00', 25)
 
     def test_should_throw_an_exception_when_hours_are_equal(self):
         with self.assertRaises(ValidationException):
