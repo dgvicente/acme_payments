@@ -2,6 +2,7 @@ import re
 from custom_exceptions import ValidationException
 
 TIME_REGEX = '^(?P<hour>\d{2}):(?P<minutes>\d{2})$'
+MIDNIGHT = 0
 
 
 class DayTime:
@@ -19,7 +20,9 @@ class DayTime:
         return False
 
     def __lt__(self, other):
-        return self.hours < other.hours or (self.hours == other.hours and self.minutes <= other.minutes)
+        top_hour = 24 if self.hours == 0 and self.minutes == 0 else self.hours
+        bottom_hour = 24 if other.hours == 0 and other.minutes == 0 else other.hours
+        return top_hour < bottom_hour or (top_hour == bottom_hour and self.minutes <= other.minutes)
 
     def __le__(self, other):
         return self.__lt__(other) or self.__eq__(other)

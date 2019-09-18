@@ -23,13 +23,11 @@ class TestDayTime(unittest.TestCase):
     def test_comparison_should_return_true_when_first_time_is_less_than_second_time(self):
         minor_time = DayTime('08:00')
         bigger_time = DayTime('08:01')
-
         self.assertTrue(minor_time < bigger_time)
 
     def test_less_than_comparison_should_return_false_when_first_time_is_more_than_second_time(self):
         bigger_time = DayTime('08:02')
         minor_time = DayTime('08:01')
-
         self.assertFalse(bigger_time < minor_time)
 
     def test_less_than_or_equal_comparison_should_return_true_when_times_are_equal(self):
@@ -40,3 +38,8 @@ class TestDayTime(unittest.TestCase):
         invalid_value = random_string(5)
         with self.assertRaises(ValidationException):
             DayTime(invalid_value)
+
+    def test_less_than_or_equal_comparison_should_return_true_when_end_time_is_midnight(self):
+        initial_time = '18:00'
+        midnight = '00:00'
+        self.assertTrue(DayTime(initial_time) <= DayTime(midnight))
