@@ -5,10 +5,10 @@
 1. Navigate in the console to the project directory
 2. Execute the command
 
-`<project_path>:acme_talent$ python acme_talent.py`
+`python acme_payments.py`
 
 ### To run the test suite:
 1. Navigate in the console to the project directory
 2. Execute the command
 
-`<project_path>:acme_talent$ python -m unittest discover`
+`python -m unittest discover`
