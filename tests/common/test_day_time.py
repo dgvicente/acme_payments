@@ -2,7 +2,7 @@ import unittest
 
 from custom_exceptions import ValidationException
 from tests.helpers import random_time, random_string
-from payments_configuration.day_time import DayTime
+from common.day_time import DayTime
 
 
 class TestDayTime(unittest.TestCase):

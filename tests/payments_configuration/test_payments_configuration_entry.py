@@ -1,5 +1,5 @@
 import unittest
-from payments_configuration.day_time import DayTime
+from common.day_time import DayTime
 from payments_configuration.payments_configuration_entry import PaymentsConfigurationEntry
 from tests.helpers import random_time, random_number, random_string
 from custom_exceptions import ValidationException

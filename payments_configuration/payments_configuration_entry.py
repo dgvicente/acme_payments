@@ -1,6 +1,6 @@
 import re
 from custom_exceptions import ValidationException
-from .day_time import DayTime
+from common.day_time import DayTime
 
 ENTRY_REGEX = '(?P<initial>\d{2}:\d{2})\s*-*\s*(?P<end>\d{2}:\d{2})\s*(?P<amount>\d+)\s*USD'
 
