@@ -1,4 +1,5 @@
-import re, os
+import re
+import os
 from definitions import ROOT_DIR
 from payments_configuration.payments_configuration import PaymentsConfiguration
 

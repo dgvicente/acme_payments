@@ -1,8 +1,7 @@
 from unittest import TestCase
 from mock import patch, MagicMock
 
-from configuration_factory.configuration_factory import ConfigurationFactory
-from payments_configuration.payments_configuration import PaymentsConfiguration
+from payments_configuration.configuration_factory import ConfigurationFactory
 from tests.helpers import random_string
 
 

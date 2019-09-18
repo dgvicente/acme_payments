@@ -1,4 +1,4 @@
-from configuration_factory.configuration_factory import ConfigurationFactory
+from payments_configuration.configuration_factory import ConfigurationFactory
 
 
 def main():
