@@ -13,6 +13,8 @@ class ConfigurationFactory:
 
     @staticmethod
     def build(input_file=DEFAULT_SOURCE):
+        input_file = input_file if input_file else DEFAULT_SOURCE
         my_file = open(input_file, "r")
         matches = re.match(CONFIG_REGEX, ''.join(my_file.readlines()))
+        my_file.close()
         return PaymentsConfiguration(matches.group('weekdays'), matches.group('weekends'))
