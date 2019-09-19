@@ -1,0 +1,20 @@
+@startuml
+skinparam class {
+	BackgroundColor White
+	ArrowColor Black
+	BorderColor Black
+}
+
+class AnswersService {
+
+}
+note right: Takes payment configurations and \nquestions as inputs and generates\n answers
+
+
+class Answer{
+   name : String
+}
+
+
+AnswersService --> "*" Answer: generates
+@enduml

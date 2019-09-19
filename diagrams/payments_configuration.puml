@@ -1,0 +1,28 @@
+@startuml
+skinparam class {
+	BackgroundColor White
+	ArrowColor Black
+	BorderColor Black
+}
+
+class ConfigurationFactory {
+
+}
+note right: Reads from file and builds the\n configurations. Uses predefined\n or given REGEX to parse.
+
+
+class PaymentsConfiguration{
+
+}
+
+
+class PaymentsConfigurationEntry {
+   amount : Integer
+   initial_time : Time
+   end_time: Time
+}
+
+PaymentsConfiguration "1" *-- "many" PaymentsConfigurationEntry : weekdays
+PaymentsConfiguration "1" *-- "many" PaymentsConfigurationEntry : weekends
+ConfigurationFactory --> "1" PaymentsConfiguration: creates
+@enduml

@@ -1,0 +1,27 @@
+@startuml
+skinparam class {
+	BackgroundColor White
+	ArrowColor Black
+	BorderColor Black
+}
+
+class QuestionsFactory {
+
+}
+note right: Reads from file and builds the\n questions. Uses predefined\n or given REGEX to parse.
+
+
+class Question{
+   name : String
+}
+
+
+class QuestionHourItem {
+   day_of_week : String
+   initial_time : Time
+   end_time: Time
+}
+
+Question "1" *-- "has list of" QuestionHourItem : hour_items
+QuestionsFactory --> "*" Question: creates list of
+@enduml
