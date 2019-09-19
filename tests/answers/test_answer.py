@@ -36,9 +36,24 @@ class TestAnswer(unittest.TestCase):
         self.assertEqual('RENE', answer.name)
         self.assertEqual(215.0, answer.amount)
 
-    def test_should_calculate_the_amount_to_be_paid_for_time_spans_equal_to_the_defined_in_config(self):
+    def test_should_calculate_the_amount_to_be_paid_for_time_spans_starting_at_midnight(self):
         question = Question('DIANA=MO08:00-10:00,SA00:00-09:00')
         answer = Answer(self.payment_configuration, question)
 
         self.assertEqual('DIANA', answer.name)
         self.assertEqual(310.0, answer.amount)
+
+    def test_should_calculate_the_amount_to_be_paid_for_time_spans_ending_at_midnight(self):
+        question = Question('PEPE=FR18:00-00:00')
+        answer = Answer(self.payment_configuration, question)
+
+        self.assertEqual('PEPE', answer.name)
+        self.assertEqual(120, answer.amount)
+
+    def test_should_calculate_the_amount_for_every_day_in_the_week_no_matter_the_order(self):
+        question = Question(
+            'JUAN=MO10:00-12:00,TU10:00-12:00,WE01:00-02:00,TH01:00-03:00,SA14:00-18:00,SU20:00-21:00,FR18:00-00:00')
+        answer = Answer(self.payment_configuration, question)
+
+        self.assertEqual('JUAN', answer.name)
+        self.assertEqual(360, answer.amount)
