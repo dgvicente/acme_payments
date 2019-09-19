@@ -52,6 +52,7 @@ the *questions* module and comes up with the answer about the employees payment.
    2.1. If you are using a virtualenv, activate it before installing
 
 `pip3 install -r requirements.txt`
+
 3. Execute the command
 
 `python acme_payments.py`
