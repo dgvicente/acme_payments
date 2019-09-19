@@ -1,21 +1,21 @@
 import re
 from custom_exceptions import ValidationException
 from common.day_time import DayTime
-
-ENTRY_REGEX = '(?P<initial>\d{2}:\d{2})\s*-*\s*(?P<end>\d{2}:\d{2})\s*(?P<amount>\d+)\s*USD'
+from definitions import CONFIG_ENTRY_REGEX, INITIAL, END, AMOUNT
 
 
 class PaymentsConfigurationEntry:
 
-    def __init__(self, raw_value):
-        matches = re.match(ENTRY_REGEX, raw_value)
+    def __init__(self, raw_value, pattern=None):
+        pattern = pattern if pattern else CONFIG_ENTRY_REGEX
+        matches = re.match(pattern, raw_value)
         if not matches:
             raise ValidationException('Wrong structure', raw_value)
-        PaymentsConfigurationEntry.validate_number('value', matches.group('amount'))
-        self.initial_time = DayTime(matches.group('initial'))
-        self.end_time = DayTime(matches.group('end'))
+        PaymentsConfigurationEntry.validate_number(AMOUNT, matches.group(AMOUNT))
+        self.initial_time = DayTime(matches.group(INITIAL))
+        self.end_time = DayTime(matches.group(END))
         self.validate_hours_range()
-        self.value = int(matches.group('amount'))
+        self.amount = int(matches.group(AMOUNT))
 
     def validate_hours_range(self):
         if self.initial_time >= self.end_time:

@@ -1,19 +1,16 @@
 import re
-
 from common.day_time import DayTime
-
-QUESTION_HOUR_ITEM_REGEX = '(?P<day>\w{2})(?P<initial>\d{2}:\d{2})-(?P<end>\d{2}:\d{2})'
-WEEKDAYS = ['MO', 'TU', 'WE', 'TH', 'FR']
-WEEKENDS = ['SA', 'SU']
+from definitions import QUESTION_HOUR_ITEM_REGEX, WEEKDAYS, DAY, INITIAL, END
 
 
 class QuestionHourItem:
 
-    def __init__(self, raw_item):
-        matches = re.match(QUESTION_HOUR_ITEM_REGEX, raw_item)
-        self.day_of_week = matches.group('day')
-        self.initial_time = DayTime(matches.group('initial'))
-        self.end_time = DayTime(matches.group('end'))
+    def __init__(self, raw_item, pattern=QUESTION_HOUR_ITEM_REGEX):
+        pattern = pattern if pattern else QUESTION_HOUR_ITEM_REGEX
+        matches = re.match(pattern, raw_item)
+        self.day_of_week = matches.group(DAY)
+        self.initial_time = DayTime(matches.group(INITIAL))
+        self.end_time = DayTime(matches.group(END))
 
     def is_weekday(self):
         return self.day_of_week in WEEKDAYS

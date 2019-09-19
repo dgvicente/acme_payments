@@ -1,18 +1,19 @@
 import re
 from custom_exceptions import ValidationException
+from definitions import HOURS, TIME_REGEX, MINUTES
 
-TIME_REGEX = '^(?P<hour>\d{2}):(?P<minutes>\d{2})$'
 MIDNIGHT = 0
 
 
 class DayTime:
 
-    def __init__(self, value):
-        matched_time = re.match(TIME_REGEX, value)
+    def __init__(self, value, pattern=TIME_REGEX):
+        pattern = pattern if pattern else TIME_REGEX
+        matched_time = re.match(pattern, value)
         if not matched_time:
             raise ValidationException()
-        self.hours = int(matched_time.group('hour'))
-        self.minutes = int(matched_time.group('minutes'))
+        self.hours = int(matched_time.group(HOURS))
+        self.minutes = int(matched_time.group(MINUTES))
 
     @staticmethod
     def from_values(hours, minutes):

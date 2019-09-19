@@ -7,6 +7,13 @@ from custom_exceptions import ValidationException
 
 class TestPaymentsConfigurationEntry(unittest.TestCase):
 
+    def test_should_construct_using_given_regex_when_is_provided(self):
+        regex = '(?P<initial>\d{2}:\d{2}):\d{2}\s*to*\s*(?P<end>\d{2}:\d{2}):\d{2}\s*(?P<amount>\d+)\s*USD per hour'
+        payments_configuration_entry = PaymentsConfigurationEntry('00:01:00 to 23:59:00 25 USD per hour', regex)
+        self.assertEqual(payments_configuration_entry.initial_time, DayTime('00:01'))
+        self.assertEqual(payments_configuration_entry.end_time, DayTime('23:59'))
+        self.assertEqual(payments_configuration_entry.amount, 25)
+
     def test_should_construct_an_instance_using_given_initial_time(self):
         initial_time = random_time()
         payments_configuration_entry = PaymentsConfigurationEntry('%s - 23:59 25 USD' % initial_time)
@@ -20,7 +27,7 @@ class TestPaymentsConfigurationEntry(unittest.TestCase):
     def test_should_construct_an_instance_using_given_value(self):
         value = random_number(max_value=1000)
         payments_configuration_entry = PaymentsConfigurationEntry('00:01 - 23:59 %s USD' % value)
-        self.assertEqual(payments_configuration_entry.value, value)
+        self.assertEqual(payments_configuration_entry.amount, value)
 
     def test_should_throw_an_exception_when_structure_from_raw_input_is_not_valid(self):
         initial_time = random_string(5)

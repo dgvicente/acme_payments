@@ -27,3 +27,11 @@ class TestQuestionHourItem(unittest.TestCase):
         question_hour_item = QuestionHourItem('%s10:00-12:00' % weekday)
 
         self.assertFalse(question_hour_item.is_weekday())
+
+    def test_should_given_regex_when_provided(self):
+        pattern = '(?P<day>\w{2}).*\s+from\s+(?P<initial>\d{2}:\d{2})\s+to\s+(?P<end>\d{2}:\d{2})'
+        question_hour_item = QuestionHourItem('MONDAY from 10:00 to 12:00', pattern)
+
+        self.assertEqual(question_hour_item.day_of_week, 'MO')
+        self.assertEqual(question_hour_item.initial_time, DayTime('10:00'))
+        self.assertEqual(question_hour_item.end_time, DayTime('12:00'))

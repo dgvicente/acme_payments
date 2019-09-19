@@ -1,6 +1,7 @@
 import unittest
 
 from custom_exceptions import ValidationException
+from definitions import HOURS, MINUTES
 from tests.helpers import random_time, random_string
 from common.day_time import DayTime
 
@@ -63,3 +64,10 @@ class TestDayTime(unittest.TestCase):
         first_time = DayTime('21:00')
         second_time = DayTime('00:00')
         self.assertEqual(3, second_time - first_time)
+
+    def test_should_use_given_regex_when_provided(self):
+        pattern = '^(?P<%s>\d{2})\s+and\s+(?P<%s>\d{2})$' % (HOURS, MINUTES)
+        day_time = DayTime('10 and 20', pattern)
+
+        self.assertEqual(10, day_time.hours)
+        self.assertEqual(20, day_time.minutes)
