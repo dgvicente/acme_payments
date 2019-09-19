@@ -31,10 +31,12 @@ The solution has 3 main modules in order to perform the required calculations:
 * *payments_configuration:* Takes care of loading and translating to the object 
 oriented world all predefined configurations of rates by hours (Table 1).
 <img src="https://github.com/dgvicente/acme_payments/blob/master/diagrams/payments_configuration.png?raw=true" width="50%">
+
 * *questions:* In charge of loading and translating to the object oriented world
 all "questions" about how much employees should be paid (using the format 
 previously defined).
 <img src="https://github.com/dgvicente/acme_payments/blob/master/diagrams/questions.png?raw=true" width="50%">
+
 * *answers:* It consumes the information from the *payments_configuration* and 
 the *questions* module and comes up with the answer about the employees payment.
 <img src="https://github.com/dgvicente/acme_payments/blob/master/diagrams/answers.png?raw=true" width="50%">
