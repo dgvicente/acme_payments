@@ -15,6 +15,7 @@ taking as an starting point rates (given by hour ranges during days of week or w
 | 00:01         | 09:00         | 30 USD|
 | 09:01         | 18:00         | 20 USD|
 | 18:01         | 00:00         | 25 USD|
+
 _Table 1_
 
 The employees information should be received as follows:
@@ -36,7 +37,7 @@ previously defined).
 the *questions* module and comes up with the answer about the employees payment.
 
 ### Project requirements:
-1. Python 3.7.x
+1. Python 3.7.x ([here](https://www.python.org/downloads/release/python-374/))
 2. pip3
 
 ### To run the project:
