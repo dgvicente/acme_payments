@@ -1,17 +1,20 @@
+from answers.answers_service import AnswersService
 from payments_configuration.configuration_factory import ConfigurationFactory
+from questions.questions_factory import QuestionsFactory
 
 
 def main():
     greet()
     payments_configuration = ConfigurationFactory.build(get_config_file())
     questions = get_questions()
-    give_answers()
+    give_answers(payments_configuration, questions)
 
 
-def give_answers():
+def give_answers(payments_configuration, questions):
+    answer_service = AnswersService(payments_configuration, questions)
     print('The answers you were looking for:')
     print('---------------------------------')
-    print('The amount to pay RENE is: 215 USD')
+    [print(answer) for answer in answer_service.answer()]
 
 
 def greet():
@@ -21,7 +24,7 @@ def greet():
 
 def get_questions():
     questions = input("Now, please provide your questions file or leave it blank to use default: ")
-    return questions if questions else None
+    return QuestionsFactory.build(questions)
 
 
 def get_config_file():
