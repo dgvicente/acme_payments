@@ -49,7 +49,9 @@ the *questions* module and comes up with the answer about the employees payment.
 1. Navigate in the console to the project directory
 2. Install the project requirements contained in requirements.txt (virtualenv is recommended)
 
-   2.1. If you are using a virtualenv, activate it 
+   2.1. If you are using a virtualenv, activate it before installing
+
+`pip3 install -r requirements.txt`
 3. Execute the command
 
 `python acme_payments.py`
