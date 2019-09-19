@@ -43,3 +43,23 @@ class TestDayTime(unittest.TestCase):
         initial_time = '18:00'
         midnight = '00:00'
         self.assertTrue(DayTime(initial_time) <= DayTime(midnight))
+
+    def test_add_should_sum_to_times_by_adding_hours_and_minutes(self):
+        first_time = DayTime('18:00')
+        second_time = DayTime('01:01')
+        self.assertEqual(DayTime('19:01'), first_time + second_time)
+
+    def test_subtract_should_return_the_hours_difference_between_hours_with_zero_minutes_by_substracting_hours(self):
+        first_time = DayTime('10:00')
+        second_time = DayTime('12:00')
+        self.assertEqual(2, second_time - first_time)
+
+    def test_subtract_should_take_minutes_into_account_to_calculate_difference_between_times(self):
+        first_time = DayTime('10:30')
+        second_time = DayTime('12:00')
+        self.assertEqual(1.5, second_time - first_time)
+
+    def test_subtract_should_take_midnight_as_hour_number_24(self):
+        first_time = DayTime('21:00')
+        second_time = DayTime('00:00')
+        self.assertEqual(3, second_time - first_time)

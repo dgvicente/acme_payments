@@ -29,8 +29,24 @@ class TestPaymentsConfigurationEntry(unittest.TestCase):
 
     def test_should_throw_an_exception_when_end_time_is_less_than_initial_time(self):
         with self.assertRaises(ValidationException):
-            PaymentsConfigurationEntry('09:00 - 08:00 25 USD')
+            PaymentsConfigurationEntry('09:01 - 08:00 25 USD')
 
     def test_should_throw_an_exception_when_hours_are_equal(self):
         with self.assertRaises(ValidationException):
-            PaymentsConfigurationEntry('09:00 - 09:00 25 USD')
+            PaymentsConfigurationEntry('09:01 - 09:01 25 USD')
+
+    def test_get_hours_contained_should_return_the_full_given_range_when_is_contained_in_entry(self):
+        payments_configuration_entry = PaymentsConfigurationEntry('09:01 - 18:00 25 USD')
+        self.assertEqual(2, payments_configuration_entry.get_hours_contained(DayTime('10:00'), DayTime('12:00')))
+
+    def test_get_hours_contained_should_return_the_full_given_range_when_is_contained_at_the_beginning_of_entry(self):
+        payments_configuration_entry = PaymentsConfigurationEntry('09:01 - 18:00 25 USD')
+        self.assertEqual(3, payments_configuration_entry.get_hours_contained(DayTime('09:00'), DayTime('12:00')))
+
+    def test_get_hours_contained_should_return_zero_when_given_hour_range_is_not_contained_in_the_range(self):
+        payments_configuration_entry = PaymentsConfigurationEntry('09:01 - 18:00 25 USD')
+        self.assertEqual(0, payments_configuration_entry.get_hours_contained(DayTime('19:00'), DayTime('21:00')))
+
+    def test_get_hours_contained_should_return_contained_hours_when_given_hour_range_is_partially_contained(self):
+        payments_configuration_entry = PaymentsConfigurationEntry('09:01 - 18:00 25 USD')
+        self.assertTrue(1, payments_configuration_entry.get_hours_contained(DayTime('17:00'), DayTime('19:00')))

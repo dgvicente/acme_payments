@@ -1,3 +1,4 @@
+import random
 import unittest
 
 from common.day_time import DayTime
@@ -14,3 +15,15 @@ class TestQuestionHourItem(unittest.TestCase):
         self.assertEqual(question_hour_item.day_of_week, 'MO')
         self.assertEqual(question_hour_item.initial_time, DayTime('10:00'))
         self.assertEqual(question_hour_item.end_time, DayTime('12:00'))
+
+    def test_is_weekday_should_return_true_if_it_is_associated_to_day_from_monday_to_friday(self):
+        weekday = random.choice(['MO', 'TU', 'WE', 'TH', 'FR'])
+        question_hour_item = QuestionHourItem('%s10:00-12:00' % weekday)
+
+        self.assertTrue(question_hour_item.is_weekday())
+
+    def test_is_weekday_should_return_false_if_it_is_associated_to_saturday_or_sunday(self):
+        weekday = random.choice(['SA', 'SU'])
+        question_hour_item = QuestionHourItem('%s10:00-12:00' % weekday)
+
+        self.assertFalse(question_hour_item.is_weekday())

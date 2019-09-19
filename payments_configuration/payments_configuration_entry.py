@@ -21,6 +21,13 @@ class PaymentsConfigurationEntry:
         if self.initial_time >= self.end_time:
             raise ValidationException('Invalid hours range', self.initial_time, self.end_time)
 
+    def get_hours_contained(self, initial_time, end_time):
+        one_minute = DayTime('00:01')
+        initial_time = initial_time if initial_time + one_minute >= self.initial_time else \
+            DayTime.from_values(self.initial_time.hours, self.initial_time.minutes - 1)
+        end_time = end_time if end_time <= self.end_time else self.end_time
+        return end_time - initial_time if end_time > initial_time else 0
+
     @staticmethod
     def validate_number(field, value):
         try:
