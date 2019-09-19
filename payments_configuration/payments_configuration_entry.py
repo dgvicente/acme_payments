@@ -26,7 +26,7 @@ class PaymentsConfigurationEntry:
         initial_time = initial_time if initial_time + one_minute >= self.initial_time else \
             DayTime.from_values(self.initial_time.hours, self.initial_time.minutes - 1)
         end_time = end_time if end_time <= self.end_time else self.end_time
-        return end_time - initial_time if end_time > initial_time else 0
+        return end_time - initial_time if end_time > initial_time + one_minute else 0
 
     @staticmethod
     def validate_number(field, value):

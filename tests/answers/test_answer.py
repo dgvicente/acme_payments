@@ -35,3 +35,10 @@ class TestAnswer(unittest.TestCase):
 
         self.assertEqual('RENE', answer.name)
         self.assertEqual(215.0, answer.amount)
+
+    def test_should_calculate_the_amount_to_be_paid_for_time_spans_equal_to_the_defined_in_config(self):
+        question = Question('DIANA=MO08:00-10:00,SA00:00-09:00')
+        answer = Answer(self.payment_configuration, question)
+
+        self.assertEqual('DIANA', answer.name)
+        self.assertEqual(310.0, answer.amount)

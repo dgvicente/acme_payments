@@ -40,7 +40,7 @@ class DayTime:
 
     def __sub__(self, other):
         initial = self._hours_to_midnight(self.hours) * 60 + self.minutes
-        end = self._hours_to_midnight(other.hours) * 60 + other.minutes
+        end = other.hours * 60 + other.minutes
         return (initial - end)/60
 
     def __str__(self):
