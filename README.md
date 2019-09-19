@@ -53,6 +53,6 @@ the *questions* module and comes up with the answer about the employees payment.
 1. Navigate in the console to the project directory
 2. Execute the command
 
-NOTE: If you are using a virtualenv make sure it is active
-
 `python -m unittest discover`
+
+NOTE: If you are using a virtualenv make sure it is active
