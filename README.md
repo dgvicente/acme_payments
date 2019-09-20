@@ -1,3 +1,26 @@
+### Project requirements:
+1. Python 3.7.x ([here](https://www.python.org/downloads/release/python-374/))
+
+### To run the project:
+1. Navigate in the console to the project directory
+2. Install the project requirements contained in requirements.txt (virtualenv is recommended)
+
+   2.1. If you are using a virtualenv, activate it before installing
+
+`pip3 install -r requirements.txt`
+
+3. Execute the command
+
+`python3 acme_payments.py`
+
+### To run the test suite:
+1. Navigate in the console to the project directory
+2. Execute the command
+
+`python3 -m unittest discover`
+
+NOTE: If you are using a virtualenv make sure it is active
+
 ### Project summary
 Acme payments is a console application with the purpose of calculating how much ACME company employess should be paid, 
 taking as an starting point rates (given by hour ranges during days of week or weekends) and per employee worked hours
@@ -41,26 +64,3 @@ previously defined).
 the *questions* module and comes up with the answer about the employees payment.
 <img src="https://github.com/dgvicente/acme_payments/blob/master/diagrams/answers.png?raw=true" width="50%">
 
-### Project requirements:
-1. Python 3.7.x ([here](https://www.python.org/downloads/release/python-374/))
-2. pip3
-
-### To run the project:
-1. Navigate in the console to the project directory
-2. Install the project requirements contained in requirements.txt (virtualenv is recommended)
-
-   2.1. If you are using a virtualenv, activate it before installing
-
-`pip3 install -r requirements.txt`
-
-3. Execute the command
-
-`python acme_payments.py`
-
-### To run the test suite:
-1. Navigate in the console to the project directory
-2. Execute the command
-
-`python -m unittest discover`
-
-NOTE: If you are using a virtualenv make sure it is active
